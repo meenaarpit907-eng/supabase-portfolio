@@ -102,14 +102,6 @@ export const process = [
   { step: "Handover", detail: "You own the code, Supabase project and Clerk app. You get docs, tests and a walkthrough call." },
 ];
 
-export const faqs = [
-  { q: "Can you work with clients outside India?", a: "Yes, I work remotely. Payment terms and currency are agreed in the written quote." },
-  { q: "Why Clerk with Supabase instead of Supabase Auth?", a: "Clerk gives you ready-made organisations, roles, MFA and user management. With Supabase third-party auth, Clerk tokens drive Row Level Security directly. If Supabase Auth suits you better, I'll use that instead." },
-  { q: "Who owns the code and accounts?", a: "You do. Projects are created in your Supabase, Clerk, Vercel and GitHub accounts, or transferred to you at handover." },
-  { q: "How do payments work?", a: "Payment terms and currency are agreed in the written quote, before any work starts." },
-  { q: "Can you fix an app built with an AI tool or another developer?", a: "Yes. Start with the security audit, and you'll get a clear list of what's safe, what's exposed and what it costs to fix." },
-];
-
 export const servicesCta = {
   title: "Have a project in mind?",
   description: "Tell me what you're building. I'll reply within a couple of days with next steps.",

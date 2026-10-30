@@ -4,7 +4,7 @@ import { Check, Clock } from "lucide-react";
 import { Section } from "@/components/site/section";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { faqs, packages, process, servicesCta, servicesIntro, showPrices } from "@/content/services";
+import { packages, process, servicesCta, servicesIntro, showPrices } from "@/content/services";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -56,16 +56,6 @@ export default function ServicesPage() {
         </ol>
       </Section>
 
-      <Section id="faq" eyebrow="FAQ" title="Common questions" className="border-t border-border/60">
-        <dl className="max-w-3xl space-y-6">
-          {faqs.map((faq) => (
-            <div key={faq.q}>
-              <dt className="font-heading font-semibold">{faq.q}</dt>
-              <dd className="mt-1 text-sm leading-6 text-muted-foreground">{faq.a}</dd>
-            </div>
-          ))}
-        </dl>
-      </Section>
 
       <Section id="start" eyebrow="Next step" title={servicesCta.title} description={servicesCta.description} className="border-t border-border/60">
         <Button asChild size="lg">
