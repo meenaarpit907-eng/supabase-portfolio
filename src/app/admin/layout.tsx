@@ -54,7 +54,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             </li>
           ) : null}
         </ul>
-        <p>The public site keeps working in preview mode with placeholder content in the meantime.</p>
+        <p>The public site keeps working in preview mode with the bundled content in the meantime.</p>
         <Button asChild variant="outline" className="w-fit">
           <Link href="/">Back to the site</Link>
         </Button>

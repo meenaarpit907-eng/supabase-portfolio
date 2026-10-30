@@ -2,6 +2,7 @@ import "server-only";
 
 import { cache } from "react";
 import {
+  placeholderCertifications,
   placeholderExperience,
   placeholderProfile,
   placeholderProjects,
@@ -14,6 +15,7 @@ export type Profile = Tables<"profile">;
 export type Project = Tables<"projects">;
 export type Skill = Tables<"skills">;
 export type Experience = Tables<"experience">;
+export type Certification = Tables<"certifications">;
 
 export type ContentSource = "supabase" | "placeholder";
 
@@ -22,6 +24,7 @@ export type PortfolioContent = {
   projects: Project[];
   skills: Skill[];
   experience: Experience[];
+  certifications: Certification[];
   source: ContentSource;
 };
 
@@ -30,6 +33,7 @@ export const PLACEHOLDER_CONTENT: PortfolioContent = {
   projects: placeholderProjects,
   skills: placeholderSkills,
   experience: placeholderExperience,
+  certifications: placeholderCertifications,
   source: "placeholder",
 };
 
@@ -50,7 +54,7 @@ export const getPortfolioContent = cache(async (): Promise<PortfolioContent> => 
   }
 
   try {
-    const [profile, projects, skills, experience] = await Promise.all([
+    const [profile, projects, skills, experience, certifications] = await Promise.all([
       supabase.from("profile").select("*").eq("id", 1).maybeSingle(),
       supabase
         .from("projects")
@@ -69,9 +73,15 @@ export const getPortfolioContent = cache(async (): Promise<PortfolioContent> => 
         .select("*")
         .eq("published", true)
         .order("start_date", { ascending: false }),
+      supabase
+        .from("certifications")
+        .select("*")
+        .eq("published", true)
+        .order("sort_order", { ascending: true })
+        .order("issued_on", { ascending: false, nullsFirst: false }),
     ]);
 
-    const error = profile.error ?? projects.error ?? skills.error ?? experience.error;
+    const error = profile.error ?? projects.error ?? skills.error ?? experience.error ?? certifications.error;
     if (error) {
       logFallback(error.message);
       return PLACEHOLDER_CONTENT;
@@ -83,6 +93,7 @@ export const getPortfolioContent = cache(async (): Promise<PortfolioContent> => 
       projects: projects.data ?? [],
       skills: skills.data ?? [],
       experience: experience.data ?? [],
+      certifications: certifications.data ?? [],
       source: "supabase",
     };
   } catch (error) {

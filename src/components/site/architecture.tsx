@@ -32,7 +32,7 @@ const pillars = [
   {
     icon: Zap,
     title: "Edge Function",
-    body: "An AFTER INSERT trigger calls the contact-notify Deno function through pg_net, authenticated with a shared secret kept in Vault. The function emails me through Resend.",
+    body: "The repository includes contact-notify, a Deno function that an AFTER INSERT trigger calls through pg_net, authenticated with a shared secret kept in Vault, to send an email through Resend once a Resend API key is set. Until then, the contact form stores messages in Supabase.",
     file: "supabase/functions/contact-notify",
   },
   {
@@ -46,7 +46,7 @@ const pillars = [
 const flows = [
   {
     label: "Visitor request flow",
-    steps: ["Visitor", "Vercel (Next.js ISR)", "PostgREST + RLS (anon)", "Postgres", "pg_net trigger", "Edge Function", "Resend"],
+    steps: ["Visitor", "Vercel (Next.js ISR)", "PostgREST + RLS (anon)", "Postgres"],
   },
   {
     label: "Admin request flow",

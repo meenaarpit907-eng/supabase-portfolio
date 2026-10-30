@@ -9,7 +9,8 @@ Function and the tests are all in this repository.
 
 - **Public site** (server-rendered, statically cached with ISR, `revalidate = 300`,
   and revalidated on every admin save with `revalidatePath`): hero, about,
-  projects with detail pages, skills, experience timeline, contact form and a
+  projects with detail pages, skills, experience timeline and certifications
+  (each hidden while empty), contact form and a
   "How this site is built" section. SEO metadata, Open Graph image, JSON-LD,
   sitemap and robots.
 - **Admin** at `/admin`: sign-in with **Clerk** (`/sign-in`), protected by
@@ -92,7 +93,7 @@ All of them are listed, with comments, in [`.env.example`](.env.example).
 | `CLERK_DOMAIN` | shell or `supabase/.env` | for the Supabase CLI | Clerk domain used by `[auth.third_party.clerk]` in `config.toml` |
 
 With none of them set the site runs in **preview mode**: it builds and renders the
-placeholder content with a banner, Clerk is not loaded, and `/admin` lists the
+bundled seed content with a banner, Clerk is not loaded, and `/admin` lists the
 missing variables. No Supabase service role key is used anywhere; keep it out of
 Vercel.
 
@@ -187,9 +188,7 @@ npm run db:lint      # Supabase database linter
 npm run db:types     # regenerate src/lib/supabase/database.types.ts from the local schema
 ```
 
-CI (`.github/workflows/ci.yml`) runs the app checks and a preview build without
-env vars, and the database job runs the migrations, seed and pgTAP tests with a
-dummy `CLERK_DOMAIN`.
+There is no CI workflow in this repository yet; run the commands above locally.
 
 ## Deploy (Clerk + hosted Supabase + Vercel, custom .me domain)
 
@@ -212,7 +211,7 @@ dummy `CLERK_DOMAIN`.
    ```bash
    npx supabase login
    npx supabase link --project-ref <project-ref>
-   npx supabase db push --include-seed     # migrations + placeholder content
+   npx supabase db push --include-seed     # migrations + seed content
    ```
    Edit the content later from `/admin`.
 5. **Make yourself admin**: sign in once on the deployed site (step 8) to see your
@@ -272,6 +271,26 @@ dummy `CLERK_DOMAIN`.
   `next.config.ts`.
 - `.env*` files are git-ignored except the `.env.example` templates, which contain
   placeholders only.
+
+## Adding a certificate
+
+Certificates live in `public.certifications` (migration
+`*_certifications.sql`): anyone can read published rows, only admins
+(`private.is_admin()`) can write. The Certifications section and its nav link
+appear once there is at least one published row. Add one from the Supabase SQL
+editor:
+
+```sql
+insert into public.certifications
+  (name, issuer, issued_on, expires_on, credential_id, credential_url, skills, sort_order)
+values
+  ('Certificate name', 'Issuer', '2025-06-01', null, 'ABC123',
+   'https://www.example.com/verify/ABC123', array['Skill one', 'Skill two'], 10);
+```
+
+Only `name` and `issuer` are required. To show it in preview mode too, add the
+same row to `placeholderCertifications` in `src/content/placeholder.ts` and to
+`supabase/seed.sql`.
 
 ## Project layout
 

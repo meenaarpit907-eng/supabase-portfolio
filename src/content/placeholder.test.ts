@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  placeholderCertifications,
   placeholderExperience,
   placeholderProfile,
   placeholderProjects,
@@ -14,7 +15,12 @@ const seed = readFileSync(path.join(process.cwd(), "supabase/seed.sql"), "utf8")
 
 describe("placeholder content", () => {
   it("uses the same ids and slugs as supabase/seed.sql", () => {
-    for (const row of [...placeholderProjects, ...placeholderSkills, ...placeholderExperience]) {
+    for (const row of [
+      ...placeholderProjects,
+      ...placeholderSkills,
+      ...placeholderExperience,
+      ...placeholderCertifications,
+    ]) {
       expect(seed).toContain(row.id);
     }
     for (const project of placeholderProjects) {
@@ -62,5 +68,18 @@ describe("placeholder content", () => {
   it("has unique project slugs", () => {
     const slugs = placeholderProjects.map((project) => project.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
+  });
+
+  it("contains no placeholder or example copy", () => {
+    const visible = JSON.stringify([
+      placeholderProfile,
+      placeholderProjects,
+      placeholderSkills,
+      placeholderExperience,
+      placeholderCertifications,
+    ]);
+    expect(visible).not.toMatch(/placeholder|example|lorem|todo/i);
+    const seedRows = seed.replace(/^--.*$/gm, "");
+    expect(seedRows).not.toMatch(/placeholder|example|lorem|todo/i);
   });
 });

@@ -4,6 +4,10 @@ import type { Experience as ExperienceRow } from "@/lib/content";
 import { formatDateRange } from "@/lib/portfolio";
 
 export function Experience({ experience }: { experience: ExperienceRow[] }) {
+  if (experience.length === 0) {
+    return null;
+  }
+
   return (
     <Section id="experience" eyebrow="Experience" title="Where I've worked" className="border-t border-border/60">
       <ol className="relative space-y-10 border-l border-border pl-8">

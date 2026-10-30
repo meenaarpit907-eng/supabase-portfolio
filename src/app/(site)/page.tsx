@@ -1,5 +1,6 @@
 import { About } from "@/components/site/about";
 import { Architecture } from "@/components/site/architecture";
+import { Certifications } from "@/components/site/certifications";
 import { Contact } from "@/components/site/contact";
 import { Experience } from "@/components/site/experience";
 import { Hero } from "@/components/site/hero";
@@ -40,6 +41,7 @@ export default async function HomePage() {
       <Projects projects={content.projects} />
       <Skills skills={content.skills} />
       <Experience experience={content.experience} />
+      <Certifications certifications={content.certifications} />
       <Architecture />
       <Contact profile={profile} />
     </>

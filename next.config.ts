@@ -86,7 +86,11 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     // The old Supabase Auth login page moved to Clerk's sign-in.
-    return [{ source: "/login", destination: "/sign-in", permanent: true }];
+    return [
+      { source: "/login", destination: "/sign-in", permanent: true },
+      // The old example project was replaced by TeamBoard.
+      { source: "/projects/team-workspace-saas-kit", destination: "/projects/teamboard", permanent: true },
+    ];
   },
   async headers() {
     return [

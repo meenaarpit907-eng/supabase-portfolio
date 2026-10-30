@@ -15,7 +15,11 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         Skip to content
       </a>
       {content.source === "placeholder" ? <PreviewBanner /> : null}
-      <SiteHeader profile={content.profile} />
+      <SiteHeader
+        profile={content.profile}
+        hasExperience={content.experience.length > 0}
+        hasCertifications={content.certifications.length > 0}
+      />
       <main id="main">{children}</main>
       <SiteFooter profile={content.profile} />
     </>

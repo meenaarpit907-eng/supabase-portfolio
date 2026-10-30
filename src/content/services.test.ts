@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { faqs, packages, process } from "@/content/services";
+import { faqs, packages, process, servicesCta, servicesIntro } from "@/content/services";
 
 describe("services content", () => {
   it("has 3–5 complete packages with unique ids", () => {
@@ -15,5 +15,9 @@ describe("services content", () => {
   it("has a process and FAQ", () => {
     expect(process.length).toBeGreaterThan(0);
     expect(faqs.length).toBeGreaterThan(0);
+  });
+  it("makes no unverified claims about clients, hours or reply time", () => {
+    const copy = JSON.stringify({ servicesIntro, packages, process, faqs, servicesCta });
+    expect(copy).not.toMatch(/worldwide|founders and small teams|overlap|one working day|48 hours/i);
   });
 });

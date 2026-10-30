@@ -10,7 +10,7 @@ export function Contact({ profile }: { profile: Profile }) {
       id="contact"
       eyebrow="Contact"
       title="Let's build something on Supabase"
-      description="Hiring for a Supabase, Postgres or full-stack role? Send a message. It lands in Postgres and an Edge Function emails it to me."
+      description="Hiring for a Supabase, Postgres or full-stack role, or have a project in mind? Send a message. It is stored in Supabase, and I reply within a couple of days."
       className="border-t border-border/60"
     >
       <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">

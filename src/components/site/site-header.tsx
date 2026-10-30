@@ -6,17 +6,30 @@ import { storagePublicUrl } from "@/lib/env";
 import type { Profile } from "@/lib/content";
 import { initials } from "@/lib/portfolio";
 
-const links = [
+type NavLink = { href: string; label: string; show?: "experience" | "certifications" };
+
+const allLinks: NavLink[] = [
   { href: "/#about", label: "About" },
   { href: "/#projects", label: "Projects" },
   { href: "/#skills", label: "Skills" },
-  { href: "/#experience", label: "Experience" },
+  { href: "/#experience", label: "Experience", show: "experience" },
+  { href: "/#certifications", label: "Certificates", show: "certifications" },
   { href: "/services", label: "Services" },
   { href: "/#architecture", label: "How it's built" },
   { href: "/#contact", label: "Contact" },
 ];
 
-export function SiteHeader({ profile }: { profile: Profile }) {
+type SiteHeaderProps = { profile: Profile; hasExperience?: boolean; hasCertifications?: boolean };
+
+export function SiteHeader({ profile, hasExperience = false, hasCertifications = false }: SiteHeaderProps) {
+  const links = allLinks
+    .filter(
+      (link) =>
+        !link.show ||
+        (link.show === "experience" && hasExperience) ||
+        (link.show === "certifications" && hasCertifications),
+    )
+    .map(({ href, label }) => ({ href, label }));
   const resumeUrl = storagePublicUrl(profile.resume_path);
 
   return (

@@ -34,6 +34,51 @@ export type Database = {
         };
         Relationships: [];
       };
+      certifications: {
+        Row: {
+          created_at: string;
+          credential_id: string | null;
+          credential_url: string | null;
+          expires_on: string | null;
+          id: string;
+          issued_on: string | null;
+          issuer: string;
+          name: string;
+          published: boolean;
+          skills: string[];
+          sort_order: number;
+          updated_at: string;
+        };
+        Insert: {
+          created_at?: string;
+          credential_id?: string | null;
+          credential_url?: string | null;
+          expires_on?: string | null;
+          id?: string;
+          issued_on?: string | null;
+          issuer: string;
+          name: string;
+          published?: boolean;
+          skills?: string[];
+          sort_order?: number;
+          updated_at?: string;
+        };
+        Update: {
+          created_at?: string;
+          credential_id?: string | null;
+          credential_url?: string | null;
+          expires_on?: string | null;
+          id?: string;
+          issued_on?: string | null;
+          issuer?: string;
+          name?: string;
+          published?: boolean;
+          skills?: string[];
+          sort_order?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
       contact_messages: {
         Row: {
           created_at: string;

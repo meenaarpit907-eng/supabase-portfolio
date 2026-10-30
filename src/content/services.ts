@@ -22,7 +22,7 @@ export const servicesIntro = {
   eyebrow: "Services",
   title: "Supabase, Clerk and Vercel, built properly",
   description:
-    "I'm Arpit, an independent engineer in India building secure, production-ready apps on Next.js, Supabase, Clerk and Vercel. I work with founders and small teams worldwide, at fixed scope and fixed price.",
+    "I'm Arpit, a developer in India building web apps on Next.js, Supabase, Clerk and Vercel. I'm available for projects at a fixed scope and a fixed price, agreed in writing before work starts.",
 };
 
 export const packages: ServicePackage[] = [
@@ -88,7 +88,7 @@ export const packages: ServicePackage[] = [
       "A set number of hours each month for features and fixes",
       "Dependency, security and RLS policy updates",
       "Database and deployment monitoring",
-      "Priority replies on working days (IST, overlapping EU and US mornings)",
+      "Replies within a couple of days",
     ],
     timeline: "Monthly, cancel anytime",
     price: "$500 – $1,500 / month",
@@ -97,13 +97,13 @@ export const packages: ServicePackage[] = [
 
 export const process = [
   { step: "Discovery call", detail: "A free 30-minute call about your product, users and deadline." },
-  { step: "Scope & fixed quote", detail: "A written scope, timeline and fixed price within 48 hours. Nothing starts until you approve it." },
+  { step: "Scope & fixed quote", detail: "A written scope, timeline and fixed price within a couple of days of the call. Nothing starts until you approve it." },
   { step: "Build with preview deployments", detail: "Every change ships to a Vercel preview URL you can click through, with progress updates each week." },
   { step: "Handover", detail: "You own the code, Supabase project and Clerk app. You get docs, tests and a walkthrough call." },
 ];
 
 export const faqs = [
-  { q: "Do you work with clients outside India?", a: "Yes. I work remotely with clients worldwide, and my hours overlap with Europe and US mornings. Payment terms and currency are agreed in the written quote." },
+  { q: "Can you work with clients outside India?", a: "Yes, I work remotely. Payment terms and currency are agreed in the written quote." },
   { q: "Why Clerk with Supabase instead of Supabase Auth?", a: "Clerk gives you ready-made organisations, roles, MFA and user management. With Supabase third-party auth, Clerk tokens drive Row Level Security directly. If Supabase Auth suits you better, I'll use that instead." },
   { q: "Who owns the code and accounts?", a: "You do. Projects are created in your Supabase, Clerk, Vercel and GitHub accounts, or transferred to you at handover." },
   { q: "How do payments work?", a: "Payment terms and currency are agreed in the written quote, before any work starts." },
@@ -112,7 +112,7 @@ export const faqs = [
 
 export const servicesCta = {
   title: "Have a project in mind?",
-  description: "Tell me what you're building. I'll reply within one working day with next steps.",
+  description: "Tell me what you're building. I'll reply within a couple of days with next steps.",
   label: "Start a conversation",
   href: "/#contact",
 };
