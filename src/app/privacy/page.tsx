@@ -24,8 +24,7 @@ export default function PrivacyPage() {
         <ul>
           <li>
             <strong>Contact form:</strong> if you send a message, I receive your name, email
-            address, optional subject and message. They are stored in a Supabase Postgres database
-            and emailed to me through Resend.
+            address, optional subject and message. They are stored in a Supabase Postgres database.
           </li>
           <li>
             <strong>No visitor accounts or tracking:</strong> visitors do not sign in, and the site
@@ -63,7 +62,6 @@ export default function PrivacyPage() {
         <ul>
           <li>Vercel hosts the website.</li>
           <li>Supabase stores the site content and contact messages.</li>
-          <li>Resend delivers contact-form notification emails.</li>
         </ul>
       </section>
 
